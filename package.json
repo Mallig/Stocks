@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Stock trading simulator CLI",
   "main": "index.js",
+  "bin": "./bin/stocks.js",
   "scripts": {
     "test": "test"
   },
