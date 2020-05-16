@@ -8,5 +8,8 @@
     "test": "test"
   },
   "author": "Malachy Gilchrist",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  }
 }
