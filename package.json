@@ -12,6 +12,8 @@
   "devDependencies": {
     "commander": "^5.1.0",
     "configstore": "^5.0.1",
-    "mocha": "^7.1.2"
+    "inquirer": "^7.1.0",
+    "mocha": "^7.1.2",
+    "sinon": "^9.0.2"
   }
 }
