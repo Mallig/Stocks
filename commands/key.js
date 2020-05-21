@@ -15,11 +15,12 @@ const key = {
             }
         ]);
         
-        const keyValue = keyManager.setKey(input.key);
-        
-        if (!keyValue) {
+        if (!input.key) {
             console.log(new Error('API Key value required'));
         }
+
+        const keyValue = keyManager.setKey(input.key);
+        
 
         console.log('API key set.')
     }
