@@ -1,12 +1,12 @@
 const KeyManager = require('../lib/keyManager');
 const inquirer = require('inquirer');
 
-const key = {
+class Key {
+    constructor(keyManager = new KeyManager()) {
+        this.keyManager = keyManager
+    }
 
     async set() {
-
-        const keyManager = new KeyManager();
-
         var input = await inquirer.prompt([
             {
                 type: 'input',
@@ -14,8 +14,8 @@ const key = {
                 message: 'Enter API Key (https://www.alphavantage.co/)'
             }
         ]);
-        
-        const keyValue = keyManager.setKey(input.key);
+
+        const keyValue = this.keyManager.setKey(input.key);
         
         if (keyValue) {
             console.log('API key set.')
@@ -25,4 +25,4 @@ const key = {
     }
 }
 
-module.exports = key;
+module.exports = Key;
