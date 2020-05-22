@@ -23,6 +23,16 @@ class Key {
             console.log('No API key given.')
         }
     }
+
+    async get() {
+        var apiKey = this.keyManager.getKey();
+        
+        if (apiKey) {
+            console.log(apiKey)
+        } else {
+            console.log('No API Key set.')
+        }
+    }
 }
 
 module.exports = Key;

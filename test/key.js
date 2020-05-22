@@ -45,4 +45,30 @@ describe('Key', function() {
             });
         });
     });
+
+    describe('get', function() {
+        context('when API key has been set', function() {
+            it('returns the key', async function() {
+                var stub = sandbox.createStubInstance(KeyManager, {
+                    getKey: 'Fake-API-Key'
+                });                
+                var key = new Key(stub);
+                var result = await key.get();
+                assert.equal(console.log.calledOnce, true);
+                assert.equal(console.log.calledWith('Fake-API-Key'), true);
+            });
+        });
+
+        context('when API key has not been set', function() {
+            it('tells the user the key isn\'t set', async function() {
+                var stub = sandbox.createStubInstance(KeyManager, {
+                    getKey: null
+                }); 
+                var key = new Key(stub);
+                var result = await key.get();
+                assert.equal(console.log.calledOnce, true);
+                assert.equal(console.log.calledWith('No API Key set.'), true);
+            });
+        });
+    });
 });
