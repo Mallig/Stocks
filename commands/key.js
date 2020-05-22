@@ -6,7 +6,7 @@ const key = {
     async set() {
 
         const keyManager = new KeyManager();
-        
+
         var input = await inquirer.prompt([
             {
                 type: 'input',
@@ -15,14 +15,13 @@ const key = {
             }
         ]);
         
-        if (!input.key) {
-            console.log(new Error('API Key value required'));
-        }
-
         const keyValue = keyManager.setKey(input.key);
         
-
-        console.log('API key set.')
+        if (keyValue) {
+            console.log('API key set.')
+        } else {
+            console.log('No API key given.')
+        }
     }
 }
 

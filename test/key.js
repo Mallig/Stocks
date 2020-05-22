@@ -7,11 +7,6 @@ const key = require('../commands/key.js');
 
 var sandbox = sinon.createSandbox();
 
-// Need to remove KeyManager dependency from unit test
-// var stub2 = sinon.stub(KeyManager, {
-//     setKey: sinon.stub().returnsThis('1234')
-//     //() => { return '1234' });
-// });
 
 describe('Key', function() {
     beforeEach(function() {
@@ -34,12 +29,12 @@ describe('Key', function() {
 
         context('When not passed a value', function() {
             beforeEach(function() {
-                sandbox.stub(inquirer, 'prompt').callsFake(() => { return { key: null } });
-            });
-            it ('raises an error', async function() {
+                sandbox.stub(inquirer, 'prompt').callsFake(() => { return { key: '' } });
+              });
+              it ('raises an error', async function() {
                 var result = await key.set()
                 assert.equal(console.log.calledOnce, true);
-                assert.equal(console.log.calledWithNew(Error), true);
+                assert.equal(console.log.calledWith('No API key given.'), true);
             });
         });
     });
