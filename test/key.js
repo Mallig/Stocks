@@ -1,6 +1,7 @@
 const assert = require('assert');
 const sinon = require('sinon');
 const inquirer = require('inquirer');
+
 const Key = require('../commands/key.js');
 const KeyManager = require('../lib/keyManager');
 

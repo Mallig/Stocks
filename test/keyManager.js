@@ -6,11 +6,6 @@ var Configstore  = require('configstore')
 
 var sandbox = sinon.createSandbox();
 
-// var stub = sinon.stub('Configstore', 'set()')
-
-
-var subj = new keyManager()
-
 describe('KeyManager', () => {
     afterEach(() => {
         sandbox.restore()
