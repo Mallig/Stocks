@@ -1,7 +1,7 @@
-const https = require('https')
+const APIManager = require('../lib/API')
 
 class Check {
-    constructor(apiKey) {
+    constructor(apiKey, API = new APIManager()) {
         this.apiKey = apiKey
         this.baseURL = 'https://www.alphavantage.co/'
     }
