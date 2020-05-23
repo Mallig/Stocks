@@ -51,6 +51,10 @@ API key set.
 
 TODO
 
+#### Search Stock codes
+
+TODO
+
 #### Add to wallet
 
 TODO

@@ -5,4 +5,5 @@ const pkg = require('../package.json');
 
 program.version(pkg.version)
     .command('key', 'Manage API key')
+    .command('check', 'check stock details')
     .parse(process.argv);
