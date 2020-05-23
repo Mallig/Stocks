@@ -41,7 +41,7 @@ API key set.
 
 #### Get the API key
 
-```
+```sehll
 ~ stocks key get
 1234
 ~
@@ -49,7 +49,13 @@ API key set.
 
 #### Get stock price
 
-TODO
+Execute the command with the `--code` option passing a stock code (e.g. `--code IBM`) to see the current price of the stock
+
+```shell
+~ stocks check price --code <Stock Code>
+108.36
+~
+```
 
 #### Search Stock codes
 
