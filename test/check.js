@@ -26,6 +26,6 @@ describe('price', function() {
         var check = new Check(stubKeyManager, stubAPIManager);
         await check.price('IBM')
         assert.equal(console.log.calledOnce, true);
-        assert.equal(console.log.calledWith("100"), true)
+        assert.equal(console.log.calledWith("IBM Price: 100"), true)
     })
 })

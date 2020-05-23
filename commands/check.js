@@ -9,7 +9,8 @@ class Check {
     async price(symbol) {
         try {
             var price = await this.api.getPrice(symbol);
-            console.log(price)
+            var result = `${symbol} Price: ${price}`
+            console.log(result)
         } catch {
             console.log('error')
         }
