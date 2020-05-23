@@ -1,15 +1,18 @@
-const APIManager = require('../lib/API')
+const APIManager = require('../lib/API');
+const KeyManager = require('../lib/keyManager');
 
 class Check {
-    constructor(apiKey, API = new APIManager()) {
-        this.apiKey = apiKey
-        this.baseURL = 'https://www.alphavantage.co/'
+    constructor(keyManager = new KeyManager(), API = new APIManager(keyManager.getKey())) {
+        this.api = API
     }
 
     async price(symbol) {
-        // var price = await this.api.getPrice(symbol);
-        return "100"
-
+        try {
+            var price = await this.api.getPrice(symbol);
+            console.log(price)
+        } catch {
+            console.log('error')
+        }
     }
 
 }

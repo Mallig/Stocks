@@ -1,18 +1,27 @@
 const assert = require('assert');
 const sinon = require('sinon');
-const API = require('../lib/API');
+const APIManager = require('../lib/API');
+const https = require('https');
 
-const dummyResponse = {
-    price: "200"
-}
+var sandbox = sinon.createSandbox();
 
+const dummyPrice = "200"
+const dummyResponse = require('./data/priceResponse.json')
+dummyResponse['Global Quote']['05. price'] = dummyPrice
+
+var apiKey = 'FAKE-API-KEY'
 
 describe('API', function() {
     describe('getPrice()', function() {
-        it('returns stock price', async function() {
-            var api = new API();
-            var result = await api.getPrice('IBM');
-            assert.equal(result, "100")
+        beforeEach(function() {
+            sandbox.stub(https, 'get').callsFake(() => { return dummyResponse });
+        })
+
+        it('returns stock price', function() {
+            var api = new APIManager(apiKey);
+            api.getPrice('IBM').then(function(data) {
+                assert.equal(data, dummyPrice)
+            });
         })
     })
 })
