@@ -1,38 +1,29 @@
 const KeyManager = require('../lib/keyManager');
-const inquirer = require('inquirer');
+const InputManager = require('../lib/inputManager')
 
 class Key {
-    constructor(keyManager = new KeyManager()) {
-        this.keyManager = keyManager
-    }
+  constructor(keyManager = new KeyManager(), inputManager = new InputManager()) {
+    this.keyManager = keyManager
+    this.inputManager = inputManager
+  }
+  
+  async set() {
+    var response
 
-    async set() {
-        var input = await inquirer.prompt([
-            {
-                type: 'input',
-                name: 'key',
-                message: 'Enter API Key (https://www.alphavantage.co/)'
-            }
-        ]);
-
-        const keyValue = this.keyManager.setKey(input.key);
-        
-        if (keyValue) {
-            console.log('API key set.')
-        } else {
-            console.log('No API key given.')
-        }
+    try {
+      response = await this.inputManager.takeKey()
+      this.keyManager.setKey(response)
+      return 'API key set.'
+    } 
+    catch {
+      return 'No API key given.'
     }
+  }
 
-    async get() {
-        var apiKey = this.keyManager.getKey();
-        
-        if (apiKey) {
-            console.log(apiKey)
-        } else {
-            console.log('No API Key set.')
-        }
-    }
+  get() {
+    var apiKey = this.keyManager.getKey();
+    return apiKey ? apiKey : 'No API Key set.'
+  }
 }
 
 module.exports = Key;

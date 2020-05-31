@@ -8,24 +8,37 @@ const APIManager = require('../lib/API')
 var sandbox = sinon.createSandbox()
 
 describe('price', function() {
-    beforeEach(function() {
-        sandbox.stub(console, 'log');
-    })
     afterEach(function() {
-        sandbox.restore()
-    })
-
+      sandbox.restore()
+  })
+      
+  context('when passed a stock code', function() {
     it('returns the price of a stock', async function() {
-        var stubKeyManager = sandbox.createStubInstance(KeyManager, {
-            getKey: '1234'
-        });
-        var stubAPIManager = sandbox.createStubInstance(APIManager, {
-            getPrice: "100"
-        })
-        
-        var check = new Check(stubKeyManager, stubAPIManager);
-        await check.price('IBM')
-        assert.equal(console.log.calledOnce, true);
-        assert.equal(console.log.calledWith("IBM Price: 100"), true)
+      var stubKeyManager = sandbox.createStubInstance(KeyManager, {
+        getKey: '1234'
+      });
+      var stubAPIManager = sandbox.createStubInstance(APIManager, {
+        getPrice: "100"
+      })
+
+      var check = new Check(stubKeyManager, stubAPIManager);
+      var result = await check.price('IBM')
+      assert.equal(result, "IBM Price: 100");
     })
+  })
+
+  context('when not passed a stock code', function() {
+    it('returns an error', async function() {
+      var stubKeyManager = sandbox.createStubInstance(KeyManager, {
+        getKey: '1234'
+      });
+      var stubAPIManager = sandbox.createStubInstance(APIManager, {
+        getPrice: "100"
+      })
+
+      var check = new Check(stubKeyManager, stubAPIManager);
+      var result = await check.price()
+      assert.equal(result, 'Provide stock code with --code, -c <codes>')
+    })
+  })
 })

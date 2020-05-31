@@ -6,11 +6,17 @@ var key = new Key()
 program
     .command('set')
     .description('Set API Key -- Get at https://www.alphavantage.co/')
-    .action(() => { key.set() });
+    .action(async () => { 
+      var result = await key.set()
+      console.log(result)  
+    });
 
 program
     .command('get')
     .description('get API Key')
-    .action(() => { key.get() });
+    .action(() => {
+      var result = key.get()
+      console.log(result)
+    });
 
 program.parse(process.argv);
