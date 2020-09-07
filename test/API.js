@@ -12,16 +12,17 @@ dummyResponse['Global Quote']['05. price'] = dummyPrice
 var apiKey = 'FAKE-API-KEY'
 
 describe('API', function() {
-    describe('getPrice()', function() {
-        beforeEach(function() {
-            sandbox.stub(https, 'get').callsFake(() => { return dummyResponse });
-        })
-
-        it('returns stock price', function() {
-            var api = new APIManager(apiKey);
-            api.getPrice('IBM').then(function(data) {
-                assert.equal(data, dummyPrice)
-            });
-        })
+  var api
+  describe('getPrice()', function() {
+    beforeEach(function() {
+      sandbox.stub(https, 'get').callsFake(() => { return dummyResponse });
+      api = new APIManager(apiKey);
     })
+
+    it('returns stock price', function() {
+      api.getPrice('IBM').then(function(data) {
+        assert.equal(data, dummyPrice)
+      });
+    })
+  })
 })
