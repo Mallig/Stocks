@@ -1,10 +1,16 @@
+const WalletManager = require('../lib/walletManager')
+
 class Wallet {
-  constructor(funds = 0) {
-    this.funds = funds
+  constructor(walletManager = new WalletManager()) {
+    this.walletManager = walletManager
   }
 
   check() {
-    return this.funds
+    return this.walletManager.funds()
+  }
+
+  add(amount) {
+    this.walletManager.add(amount)
   }
 }
 
