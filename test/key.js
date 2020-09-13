@@ -35,7 +35,7 @@ describe('Key', function () {
       it('confirms the API key is set', async function () {
         key = new Key(stubKeyManager, stubInputManager)
         var result = await key.set()
-        assert.equal(result, 'API key set.');
+        assert.strictEqual(result, 'API key set.');
       });
     });
 
@@ -51,7 +51,7 @@ describe('Key', function () {
       it('informs the user the key was not set', async function () {
         key = new Key(stubKeyManager, stubInputManager)
         var result = await key.set()
-        assert.equal(result, 'No API key given.');
+        assert.strictEqual(result, 'No API key given.');
       });
     });
   });
@@ -65,7 +65,7 @@ describe('Key', function () {
 
         key = new Key(stub);
         var result = await key.get();
-        assert.equal(result, 'Fake-API-Key');
+        assert.strictEqual(result, 'Fake-API-Key');
       });
     });
 
@@ -77,7 +77,7 @@ describe('Key', function () {
 
         key = new Key(stub);
         var result = await key.get();
-        assert.equal(result, 'No API Key set.');
+        assert.strictEqual(result, 'No API Key set.');
       });
     });
   });

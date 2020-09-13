@@ -3,6 +3,7 @@ const sinon = require('sinon');
 
 const Wallet = require('../commands/wallet');
 const WalletManager = require('../lib/walletManager');
+const InputManager = require('../lib/inputManager')
 
 const sandbox = sinon.createSandbox()
 
@@ -12,24 +13,27 @@ describe('Wallet', () => {
 
   beforeEach(() => {
     walletFunds = 500
-    const stub = sandbox.createStubInstance(WalletManager, {
-      funds: walletFunds
+    var payIn = 100
+    var stubWalletManager = sandbox.createStubInstance(WalletManager, {
+      funds: walletFunds,
+      set: (walletFunds + payIn)
     });
-    wallet = new Wallet(stub)
+    var stubInputManager = sandbox.createStubInstance(InputManager, {
+      takeFundsAmount: payIn
+    })
+    wallet = new Wallet(stubWalletManager, stubInputManager)
   })
 
   describe('#check', () => {
     it('returns wallet funds', () => {
-      assert.equal(wallet.check(), walletFunds)
+      assert.strictEqual(wallet.check(), walletFunds)
     })
   })
 
-  // describe('#add', () => {
-  //   it('adds funds to the wallet', () => {
-  //     var wallet = new Wallet()
-  //     result = wallet.add(100)
-
-  //     assert.equal(result, 100)
-  //   })
-  // })
+  describe('#add', () => {
+    it('adds funds to the wallet returning the new total', async () => {
+      result = await wallet.add()
+      assert.strictEqual(result, '£' + 600)
+    })
+  })
 })

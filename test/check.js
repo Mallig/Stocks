@@ -28,14 +28,14 @@ describe('price', function() {
   context('when passed a stock code', function() {
     it('returns the price of a stock', async function() {
       var result = await check.price('IBM')
-      assert.equal(result, "IBM Price: 100");
+      assert.strictEqual(result, "IBM Price: 100");
     })
   })
 
   context('when not passed a stock code', function() {
     it('returns an error', async function() {
       var result = await check.price()
-      assert.equal(result, 'Provide stock code with --code, -c <codes>')
+      assert.strictEqual(result, 'Provide stock code with --code, -c <codes>')
     })
   })
 })

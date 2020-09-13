@@ -20,7 +20,7 @@ describe('KeyManager', () => {
         get: 'Fake-API-Key'
       })
       keyManager = new KeyManager(stub)
-      assert.equal(keyManager.setKey('Fake-API-Key'), 'Fake-API-Key');
+      assert.strictEqual(keyManager.setKey('Fake-API-Key'), 'Fake-API-Key');
     });
   });
 
@@ -31,7 +31,7 @@ describe('KeyManager', () => {
           get: 'Fake-API-Key'
         })
         keyManager = new KeyManager(stub)
-        assert.equal(keyManager.getKey(), 'Fake-API-Key');
+        assert.strictEqual(keyManager.getKey(), 'Fake-API-Key');
       });
     });
 
@@ -41,7 +41,7 @@ describe('KeyManager', () => {
           get: null
         })
         keyManager = new KeyManager(stub)
-        assert.equal(keyManager.getKey(), null);
+        assert.strictEqual(keyManager.getKey(), null);
       });
     });
   });

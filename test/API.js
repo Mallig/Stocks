@@ -21,7 +21,7 @@ describe('API', function() {
 
     it('returns stock price', function() {
       api.getPrice('IBM').then(function(data) {
-        assert.equal(data, dummyPrice)
+        assert.strictEqual(data, dummyPrice)
       });
     })
   })

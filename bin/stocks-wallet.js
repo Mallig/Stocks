@@ -12,8 +12,10 @@ program
 program
   .command('add')
   .description('add funds to wallet')
-  .action((amount) => {
-    console.log(amount.args)
+  .option('-a, --amount <amount>', 'add funds')
+  .action(async () => {
+    var result = await wallet.add()
+    console.log(result)
   })  
 
 program.parse(process.argv)
